@@ -175,18 +175,19 @@ def set_lang_from_promt(prompt):
         return set_lang_from_promt(prompt)
 
 
-def conver_from_promt(prompt):
+def convert_from_promt(prompt):
     try:
         value = locale.atof(input(prompt))
         print(NumberConverter(value).currency_string)
     except ValueError:
         print("Sorry, I didn't understand that.")
-        return conver_from_promt(prompt)
+        return convert_from_promt(prompt)
 
     if 0 >= value <= 2147483647:
         print("Sorry, only numbers between 0 and 2147483647 are allowed.")
-        return conver_from_promt(prompt)
+        return convert_from_promt(prompt)
 
 
-set_lang_from_promt("Please select language [1] for English [2] for Ukrainian:")
-conver_from_promt("Enter number between 0 and 2147483647:")
+if __name__ == "__main__":
+    set_lang_from_promt("Please select language [1] for English [2] for Ukrainian:")
+    convert_from_promt("Enter number between 0 and 2147483647:")
