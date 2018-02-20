@@ -7,8 +7,8 @@ from lang.ua import Ukrainian
 
 
 class NumberConverter():
-    def get(self):
-        print(self.verbalizer.get())
+    def get_verbal(self):
+        return self.verbalizer.get()
 
     def __init__(self, n, locale):
         getcontext().prec = 2
@@ -90,4 +90,4 @@ if __name__ == "__main__":
     lang = set_lang_from_promt("Please select language [1] for English [2] for Ukrainian:")
     num = convert_from_promt("Enter number between 0 and 2147483647:")
     nc = NumberConverter(num, lang)
-    nc.get()
+    print(nc.get_verbal())
