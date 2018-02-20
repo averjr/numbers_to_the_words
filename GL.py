@@ -8,7 +8,7 @@ from lang.ua import Ukrainian
 
 class NumberConverter():
     def get_verbal(self):
-        return self.verbalizer.get()
+        return self.locale.get()
 
     def __init__(self, n, locale):
         getcontext().prec = 2
@@ -19,14 +19,7 @@ class NumberConverter():
         self.ranked = []
         self.get_ranks()
 
-        self.locale = locale
-        self.set_verbalizer()
-
-    def set_verbalizer(self):
-        if self.locale == 'en':
-            self.verbalizer = English(self.ranked, self.whole_and_remainder[1])
-        if self.locale == 'ua':
-            self.verbalizer = Ukrainian(self.ranked, self.whole_and_remainder[1])
+        self.locale = locale(self.ranked, self.whole_and_remainder[1])
 
     def get_whole_and_remainder(self):
         f, w = math.modf(self.number)
@@ -87,7 +80,14 @@ def convert_from_promt(prompt):
 
 
 if __name__ == "__main__":
-    lang = set_lang_from_promt("Please select language [1] for English [2] for Ukrainian:")
+    lang = set_lang_from_promt(
+        "Please select language [1] for English [2] for Ukrainian:"
+    )
+    if lang == 'en':
+        loc = English
+    if lang == 'ua':
+        loc = Ukrainian
+
     num = convert_from_promt("Enter number between 0 and 2147483647:")
-    nc = NumberConverter(num, lang)
+    nc = NumberConverter(num, loc)
     print(nc.get_verbal())

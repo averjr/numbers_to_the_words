@@ -1,6 +1,10 @@
 # - *- coding: utf- 8 - *-
-class Ukrainian():
-    def __init__(self, ranked_whole, cents):
+from Locale import Locale
+
+
+class Ukrainian(Locale):
+    def __init__(self, ranked_whole, cents, **kvars):
+        print(dir(kvars))
         self.prepare_whole = self.name_all(ranked_whole)
         self.prepare_remainder = self.name_all([cents])
 

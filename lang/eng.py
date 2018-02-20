@@ -1,4 +1,7 @@
-class English():
+from Locale import Locale
+
+
+class English(Locale):
     def __init__(self, ranked_whole, cents):
         self.prepare_whole = self.name_all(ranked_whole)
         self.prepare_remainder = self.name_all([cents])
